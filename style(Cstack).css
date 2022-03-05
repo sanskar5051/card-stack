@@ -1,0 +1,100 @@
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.card {
+  cursor: cell;
+  background: grey;
+  margin: 1.5rem;
+  color: white;
+  background-size: cover;
+  padding: 10rem 0 0;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  width: 33.1ch;
+  height: 25ch;
+  transition: transform 500ms ease;
+}
+.card:hover,
+.card:focus-within {
+  transform: scale(1.1);
+}
+.card-content {
+  --padding: 1.5rem;
+  padding: var(--padding);
+  background: linear-gradient(
+    hsl(0 0% 0% / 0),
+    hsl(0 0% 0% / 0.3) 20%,
+    hsl(0 0% 0% / 1)
+  );
+}
+@media (hover) {
+  .card-content {
+    transform: translateY(56%);
+    transition: transform 500ms ease;
+    transition-delay: 500ms;
+  }
+  .card:hover .card-content,
+  .card:focus-within .card-content {
+    transform: translateY(0);
+    transition-delay: 500ms;
+  }
+  .card:focus-within .card-content {
+    transition-duration: 0ms;
+  }
+  .card-content > *:not(.card-title) {
+    opacity: 0;
+    transition: opacity 500ms linear;
+  }
+  .card:hover .card-content > *:not(.card-title),
+  .card:focus-within .card-content > *:not(.card-title) {
+    opacity: 1;
+    transition-delay: 500ms;
+  }
+  .card:hover .card-title::after,
+  .card:focus-within .card-title::after {
+    transform: scaleX(1);
+  }
+}
+
+.card-title {
+  position: relative;
+  width: max-content;
+  font-family: "Roboto", sans-serif;
+}
+.card-title::after {
+  content: "";
+  position: absolute;
+  height: 4px;
+  background: rgb(157, 255, 157);
+  width: calc(100% + var(--padding));
+  left: calc(var(--padding) * -1);
+  bottom: -20%;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 500ms ease;
+}
+
+.button {
+  cursor: pointer;
+  display: inline;
+  text-decoration: none;
+  color: black;
+  background-color: rgb(157, 255, 157);
+  padding: 0.5em 1.25em;
+  border-radius: 0.25em;
+}
+.button:hover,
+.button:focus {
+  background-color: white;
+  color: green;
+}
+.card-body {
+  opacity: 0.8;
+  font-family: "Roboto", sans-serif;
+}
+.card:hover ~ .card {
+  transform: scale(0.95);
+  opacity: 0.8;
+}
